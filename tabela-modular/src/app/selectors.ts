@@ -21,7 +21,7 @@ export const selectorColunas = createSelector(
 
 export const selectorColunasAtivas = createSelector(
     selectTabelaModular,
-    (state: TabelaModularState) => state.colunas.filter(coluna => coluna.ativa).map(coluna => coluna.nome)
+    (state: TabelaModularState) => state.colunas.filter(coluna => coluna.isAtiva).map(coluna => coluna.nome)
 );
 
 export const selectorColunasModulares = createSelector(

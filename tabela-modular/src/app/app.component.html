@@ -7,7 +7,7 @@
 
     <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below" style="display: flex; flex-direction: column">
       <mat-checkbox *ngFor="let coluna of (colunas$ | async); index as i"
-        [checked]="coluna.ativa"
+        [checked]="coluna.isAtiva"
         (click)="selecionarColuna(coluna, i, $event)">
           {{ coluna.nome }}
       </mat-checkbox>

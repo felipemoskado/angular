@@ -14,7 +14,7 @@ export function colunasReducer(
 
             return state.map((coluna, index) => {
                 if (index === indexColunaSelecionada) {
-                    return { ...coluna, ativa: !coluna.ativa };
+                    return { ...coluna, isAtiva: !coluna.isAtiva };
                 }
                 return { ...coluna };
             });

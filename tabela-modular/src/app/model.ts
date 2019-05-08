@@ -8,7 +8,7 @@ export interface Pessoa {
 
 export interface Coluna {
     nome: string;
-    ativa: boolean;
+    isAtiva: boolean;
 }
 
 export interface ColunaModular {

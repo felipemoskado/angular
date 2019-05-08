@@ -1,13 +1,13 @@
-import { colunasReducer, colunasModularesReducer } from ''./reducers';
+import { colunasReducer, colunasModularesReducer } from './reducers';
 import { SalvarColuna, SelecionarColuna, DefinirColunasModulares } from './actions';
-import { ColunaModular } from './model';
+import { ColunaModular, Coluna } from './model';
 
 describe('Reducer - Tabela Modular', () => {
 
     describe('colunasReducer', () => {
-        const colunas = [
-            { nome: 'nome', ativa: true },
-            { nome: 'sobrenome', ativa: false }
+        const colunas: Array<Coluna> = [
+            { nome: 'nome', isAtiva: true },
+            { nome: 'sobrenome', isAtiva: false }
         ];
 
         it('Deve manter o estado quando receber uma ação desconhecida', () => {
@@ -21,9 +21,9 @@ describe('Reducer - Tabela Modular', () => {
 
             expect(state.length).toEqual(2);
             expect(state[0].nome).toEqual('nome');
-            expect(state[0].ativa).toBeTruthy();
+            expect(state[0].isAtiva).toBeTruthy();
             expect(state[1].nome).toEqual('sobrenome');
-            expect(state[1].ativa).toBeFalsy();
+            expect(state[1].isAtiva).toBeFalsy();
         });
 
         it('Deve alterar a coluna quando receber ação "SELECIONAR_COLUNA"', () => {
@@ -33,9 +33,9 @@ describe('Reducer - Tabela Modular', () => {
 
             expect(state.length).toEqual(2);
             expect(state[0].nome).toEqual('nome');
-            expect(state[0].ativa).toBeTruthy();
+            expect(state[0].isAtiva).toBeTruthy();
             expect(state[1].nome).toEqual('sobrenome');
-            expect(state[1].ativa).toBeTruthy();
+            expect(state[1].isAtiva).toBeTruthy();
         });
     });
 

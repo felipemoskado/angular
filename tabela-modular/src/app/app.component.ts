@@ -36,11 +36,11 @@ export class AppComponent {
   colunasModulares$: Observable<Array<ColunaModular>>;
 
   displayedColumns: Array<Coluna> = [
-    { nome: 'nome', ativa: true },
-    { nome: 'sobrenome', ativa: true },
-    { nome: 'idade', ativa: true },
-    { nome: 'cpf', ativa: true },
-    { nome: 'rg', ativa: true },
+    { nome: 'nome', isAtiva: true },
+    { nome: 'sobrenome', isAtiva: true },
+    { nome: 'idade', isAtiva: true },
+    { nome: 'cpf', isAtiva: true },
+    { nome: 'rg', isAtiva: true },
   ];
 
   dataSource = ELEMENT_DATA;
