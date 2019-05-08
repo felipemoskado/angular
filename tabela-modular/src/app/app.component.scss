@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+}
+
+.container-card {
+    flex: 1;
+    padding: 10px;
+
+    &-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
