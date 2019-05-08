@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { SalvarColuna, TabelaModularActions, SelecionarColuna } from './actions';
-import { Coluna } from './model';
+import { SalvarColuna, TabelaModularActions, SelecionarColuna, DefinirColunasModulares } from './actions';
+import { Coluna, ColunaModular } from './model';
 
 export function colunasReducer(
     state: Array<Coluna> = [],
@@ -18,6 +18,18 @@ export function colunasReducer(
                 }
                 return { ...coluna };
             });
+        default:
+            return state;
+    }
+}
+
+export function colunasModularesReducer(
+    state: Array<ColunaModular> = [],
+    action: DefinirColunasModulares
+): Array<ColunaModular> {
+    switch (action.type) {
+        case TabelaModularActions.DEFINIR_COLUNAS_TABELA:
+            return action.payload;
         default:
             return state;
     }

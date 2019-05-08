@@ -10,3 +10,9 @@ export interface Coluna {
     nome: string;
     ativa: boolean;
 }
+
+export interface ColunaModular {
+    id: string;
+    descricao: string;
+    value: (element: any) => any;
+  }
