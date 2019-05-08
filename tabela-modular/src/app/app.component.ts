@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 import { Pessoa, Coluna, ColunaModular } from './model';
 import { Store } from '@ngrx/store';
@@ -25,7 +25,8 @@ const colunasModulares: Array<ColunaModular> = [
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
 
@@ -36,11 +37,11 @@ export class AppComponent {
   colunasModulares$: Observable<Array<ColunaModular>>;
 
   displayedColumns: Array<Coluna> = [
-    { nome: 'nome', isAtiva: true },
-    { nome: 'sobrenome', isAtiva: true },
-    { nome: 'idade', isAtiva: true },
-    { nome: 'cpf', isAtiva: true },
-    { nome: 'rg', isAtiva: true },
+    { nome: 'nome', isAtiva: true, isFixa: true },
+    { nome: 'sobrenome', isAtiva: true, isFixa: true },
+    { nome: 'idade', isAtiva: true, isFixa: false },
+    { nome: 'cpf', isAtiva: true, isFixa: false },
+    { nome: 'rg', isAtiva: true, isFixa: false }
   ];
 
   dataSource = ELEMENT_DATA;
@@ -48,13 +49,17 @@ export class AppComponent {
   constructor(private store: Store<any>) {
     this.store.dispatch(new SalvarColuna(this.displayedColumns));
     this.store.dispatch(new DefinirColunasModulares(colunasModulares));
+
     this.colunasExibidas$ = this.store.select(selectorColunasAtivas);
     this.colunas$ = this.store.select(selectorColunas);
     this.colunasModulares$ = this.store.select(selectorColunasModulares);
   }
 
   selecionarColuna(coluna: Coluna, index: number, event: MouseEvent) {
-    this.store.dispatch(new SelecionarColuna(index));
+    if (!coluna.isFixa) {
+      this.store.dispatch(new SelecionarColuna(index));
+    }
+
     event.stopPropagation();
   }
 }

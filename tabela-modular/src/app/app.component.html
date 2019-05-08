@@ -1,20 +1,21 @@
-<mat-card class="conftainer-card">
+<mat-card class="container-card">
   <mat-card-header class="container-card-header">
-    <mat-card-title>Tabela Modular</mat-card-title>
+    <mat-card-title class="container-card-header-title">Tabela Modular</mat-card-title>
     <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>settings</mat-icon>
     </button>
 
-    <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below" style="display: flex; flex-direction: column">
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below" class="container-menu">
       <mat-checkbox *ngFor="let coluna of (colunas$ | async); index as i"
+        [disabled]="coluna.isFixa"
         [checked]="coluna.isAtiva"
         (click)="selecionarColuna(coluna, i, $event)">
           {{ coluna.nome }}
       </mat-checkbox>
     </mat-menu>
   </mat-card-header>
-  <mat-card-content>
-    <table mat-table style="width: 100%" [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-card-content class="container-card-content">
+    <table mat-table [dataSource]="dataSource" class="container-tabela-modular mat-elevation-z8">
 
       <ng-container *ngFor="let coluna of (colunasModulares$ | async)" matColumnDef="{{ coluna.id }}">
         <th mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header>{{ coluna.descricao }}</th>
